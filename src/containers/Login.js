@@ -30,7 +30,7 @@ export default function Login() {
             navigate("/");
         } catch (e) {
             onError(e);
-            setIsLoading(true);
+            setIsLoading(false);
         }
     }
 
