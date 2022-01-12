@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
+import { onError } from "../libs/errorLib";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "../libs/contextLib";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +29,7 @@ export default function Login() {
             userHasAuthenticated(true);
             navigate("/");
         } catch (e) {
-            alert(e.message);
+            onError(e);
             setIsLoading(true);
         }
     }

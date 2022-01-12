@@ -7,6 +7,7 @@ import "./App.css";
 import { AppContext } from "./libs/contextLib";
 import PageRoutes from "./PageRoutes";
 import { useNavigate } from "react-router-dom";
+import { onError } from "./libs/errorLib";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
     }
     catch (e) {
       if (e !== 'No current user') {
-        alert(e);
+        onError(e);
       }
     }
     setIsAuthenticating(false);
