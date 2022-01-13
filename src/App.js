@@ -47,16 +47,25 @@ function App() {
               Scratch
             </Navbar.Brand>
           </LinkContainer>
+
           <Navbar.Toggle />
+
           <Navbar.Collapse className="justify-content-end">
             <Nav activeKey={window.location.pathname}>
               {isAuthenticated ? (
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <>
+                  <LinkContainer to="/settings">
+                    <Nav.Link>Settings</Nav.Link>
+                  </LinkContainer>
+
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                </>
               ) : (
                 <>
                   <LinkContainer to="/signup">
                     <Nav.Link>Signup</Nav.Link>
                   </LinkContainer>
+
                   <LinkContainer to="/login">
                     <Nav.Link>Login</Nav.Link>
                   </LinkContainer>
@@ -65,6 +74,7 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <PageRoutes />
         </AppContext.Provider>
