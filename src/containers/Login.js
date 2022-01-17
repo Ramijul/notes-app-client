@@ -5,12 +5,13 @@ import "./Login.css";
 import { onError } from "../libs/errorLib";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "../libs/contextLib";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormFields } from "../libs/hooksLib";
 
 
 export default function Login() {
     const navigate = useNavigate();
+    const { state } = useLocation();
     const [isLoading, setIsLoading] = useState(false);
     const { userHasAuthenticated } = useAppContext();
     const [fields, handleFieldChange] = useFormFields({
@@ -30,7 +31,8 @@ export default function Login() {
         try {
             await Auth.signIn(fields.email, fields.password);
             userHasAuthenticated(true);
-            navigate("/");
+
+            navigate(state?.path || "/");
         } catch (e) {
             onError(e);
             setIsLoading(false);

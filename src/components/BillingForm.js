@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { CardElement, injectStripe } from "@stripe/react-stripe-js";
+import { CardElement, injectStripe, useElements, useStripe } from "@stripe/react-stripe-js";
 import LoaderButton from "./LoaderButton";
-import { useFormFields } from "../libs/hooksLib";
 import "./BillingForm.css";
+import { useFormFields } from "../libs/hooksLib";
 
 function BillingForm({ isLoading, onSubmit, ...props }) {
     const [fields, handleFieldChange] = useFormFields({
@@ -74,7 +74,7 @@ function BillingForm({ isLoading, onSubmit, ...props }) {
                 className="card-field"
                 onChange={(e) => setIsCardComplete(e.complete)}
                 options={{
-                    style={
+                    style: {
                         base: {
                             fontSize: "16px",
                             color: "#495057",
